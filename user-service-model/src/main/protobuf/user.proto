@@ -1,0 +1,129 @@
+package truward.orion.user;
+
+option java_package = "com.truward.orion.user.service.model";
+option java_outer_classname = "UserModel";
+
+enum ContactType {
+  PHONE = 1;
+  EMAIL = 2;
+}
+
+message Contact {
+  required string number = 1;
+  required ContactType type = 2;
+}
+
+message UserAccount {
+  optional int64 id = 1;
+  required string nickname = 2;
+  required string passwordHash = 3;
+  repeated Contact contacts = 4;
+  repeated string authorities = 5;
+  required int64 created = 6;
+  required bool active = 7;
+}
+
+//
+// Service Messages
+//
+
+// (Admin only) List Accounts
+
+message ListAccountsRequest {
+  optional string offsetToken = 1;
+  required int32 limit = 2 [default = 8];
+}
+
+message ListAccountsResponse {
+  repeated UserAccount accounts = 1;
+  optional string offsetToken = 2;
+}
+
+// Account Lookups
+
+message AccountLookupRequest {
+  required string username = 1;
+
+  // include contacts to the resultant user account?
+  optional bool includeContacts = 2;
+}
+
+message AccountLookupResponse {
+  optional UserAccount account = 1;
+}
+
+message AccountPresenceRequest {
+  required string nickname = 1;
+  repeated Contact contacts = 2;
+}
+
+message AccountPresenceResponse {
+  required bool exists = 1;
+}
+
+// Account Registration
+
+message RegisterAccountRequest {
+  required string nickname = 1;
+  required string passwordHash = 2;
+  repeated Contact contacts = 3;
+  repeated string authorities = 4;
+  optional string invitationToken = 5;
+}
+
+message RegisterAccountResponse {
+  required int64 userId = 1;
+}
+
+// Account Update
+
+message UpdateAccountRequest {
+  required int64 userId = 1;
+  required string nickname = 2;
+  required string passwordHash = 3; // admin only
+  repeated Contact contacts = 4;
+  repeated string authorities = 5; // admin/service only
+  required bool active = 6; // admin only
+}
+
+message UpdateAccountResponse {
+}
+
+// Reset Password
+
+message ResetPasswordRequest {
+  required int64 userId = 1;
+  required string newPasswordHash = 4;
+}
+
+// Invitation Tokens
+
+message CreateInvitationTokensRequest {
+  required int32 count = 1;
+  repeated string authorities = 2;
+
+  // when this token should expire?
+  optional int64 expirationTime = 3;
+}
+
+message CreateInvitationTokensResponse {
+  repeated string invitationTokens = 1;
+}
+
+// Account Deletion
+
+message DeleteAccountsRequest {
+  repeated int64 userIds = 1;
+}
+
+message DeleteAccountsResponse {
+}
+
+// Deactivation utilities
+
+message DeactivateUsersWithAuthoritiesRequest {
+  repeated string authorities = 1;
+}
+
+message DeactivateUsersWithAuthoritiesResponse {
+}
