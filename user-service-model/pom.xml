@@ -1,11 +1,10 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <artifactId>user-service-client</artifactId>
     <groupId>com.truward.orion</groupId>
-    <version>1.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
   </parent>
 
   <artifactId>user-service-model</artifactId>
@@ -37,11 +36,11 @@
             <phase>generate-sources</phase>
             <configuration>
               <tasks>
-                <mkdir dir="target/generated-sources/java"/>
+                <mkdir dir="target/generated-sources/java" />
 
                 <exec executable="protoc">
-                  <arg value="--java_out=target/generated-sources/java"/>
-                  <arg value="src/main/protobuf/user.proto"/>
+                  <arg value="--java_out=target/generated-sources/java" />
+                  <arg value="src/main/protobuf/user.proto" />
                 </exec>
               </tasks>
               <sourceRoot>target/generated-sources/java</sourceRoot>
