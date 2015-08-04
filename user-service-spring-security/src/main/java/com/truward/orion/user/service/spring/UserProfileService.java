@@ -40,7 +40,7 @@ public final class UserProfileService implements UserDetailsService {
 
     final UserModel.UserAccount acc = r.getAccount();
 
-    return new User(acc.getNickname(), acc.getPasswordHash(), acc.getActive(), true, true, true,
+    return new User(Long.toString(acc.getId()), acc.getPasswordHash(), acc.getActive(), true, true, true,
         toAuthorities(acc.getAuthoritiesList()));
   }
 

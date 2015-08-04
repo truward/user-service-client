@@ -30,10 +30,11 @@ public final class UserProfileServiceTest {
   @Test
   public void shouldLookupUser() {
     // Given:
+    final long id = 123000L;
     final UserProfileService profileService = new UserProfileService(userRestServiceMock);
 
     final UserModel.UserAccount account = UserModel.UserAccount.newBuilder()
-        .setId(1)
+        .setId(id)
         .setPasswordHash("password-hash")
         .setNickname(username)
         .setActive(false)
@@ -51,7 +52,7 @@ public final class UserProfileServiceTest {
     final UserDetails userDetails = profileService.loadUserByUsername(username);
 
     // Then:
-    assertEquals(username, userDetails.getUsername());
+    assertEquals(Long.toString(id), userDetails.getUsername());
     assertEquals(account.getPasswordHash(), userDetails.getPassword());
     assertEquals(account.getActive(), userDetails.isEnabled());
     assertEquals(Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")), userDetails.getAuthorities());
