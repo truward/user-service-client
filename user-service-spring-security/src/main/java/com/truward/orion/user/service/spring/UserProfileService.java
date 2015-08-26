@@ -40,8 +40,8 @@ public final class UserProfileService implements UserDetailsService {
 
     final UserModel.UserAccount acc = r.getAccount();
 
-    return new User(Long.toString(acc.getId()), acc.getPasswordHash(), acc.getActive(), true, true, true,
-        toAuthorities(acc.getAuthoritiesList()));
+    return new User(acc.getNickname(), acc.getPasswordHash(), acc.getActive(), true, true, true,
+        toAuthorities(acc.getId(), acc.getAuthoritiesList()));
   }
 
   //
@@ -49,11 +49,17 @@ public final class UserProfileService implements UserDetailsService {
   //
 
   @Nonnull
-  private List<SimpleGrantedAuthority> toAuthorities(@Nonnull List<String> roles) {
-    final List<SimpleGrantedAuthority> result = new ArrayList<>(roles.size());
+  private List<SimpleGrantedAuthority> toAuthorities(long userId, @Nonnull List<String> roles) {
+    final List<SimpleGrantedAuthority> result = new ArrayList<>(roles.size() + 1);
+
+    // add user ID-encoded role
+    result.add(new SimpleGrantedAuthority(UserIdRoleUtil.getUserIdRoleName(userId)));
+
+    // add standard assigned roles
     for (final String r : roles) {
       result.add(getOrInsert(r));
     }
+
     return result;
   }
 

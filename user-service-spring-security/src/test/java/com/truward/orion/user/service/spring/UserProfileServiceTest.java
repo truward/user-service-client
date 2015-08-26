@@ -10,7 +10,9 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
+import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashSet;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -52,10 +54,13 @@ public final class UserProfileServiceTest {
     final UserDetails userDetails = profileService.loadUserByUsername(username);
 
     // Then:
-    assertEquals(Long.toString(id), userDetails.getUsername());
+    assertEquals(username, userDetails.getUsername());
     assertEquals(account.getPasswordHash(), userDetails.getPassword());
     assertEquals(account.getActive(), userDetails.isEnabled());
-    assertEquals(Collections.singleton(new SimpleGrantedAuthority("ROLE_USER")), userDetails.getAuthorities());
+    assertEquals(
+        new HashSet<>(Arrays.asList(new SimpleGrantedAuthority(UserIdRoleUtil.getUserIdRoleName(id)),
+            new SimpleGrantedAuthority("ROLE_USER"))),
+        userDetails.getAuthorities());
     assertTrue(userDetails.isAccountNonExpired());
     assertTrue(userDetails.isCredentialsNonExpired());
     assertTrue(userDetails.isAccountNonLocked());
