@@ -23,7 +23,6 @@
     <dependency>
       <groupId>org.springframework.security</groupId>
       <artifactId>spring-security-core</artifactId>
-      <version>${spring.version}</version>
     </dependency>
 
     <!-- FindBugs -->
