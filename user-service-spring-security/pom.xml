@@ -4,7 +4,7 @@
   <parent>
     <artifactId>user-service-client</artifactId>
     <groupId>com.truward.orion</groupId>
-    <version>1.0.5-SNAPSHOT</version>
+    <version>1.0.5</version>
   </parent>
 
   <artifactId>user-service-spring-security</artifactId>
