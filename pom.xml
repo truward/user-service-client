@@ -70,8 +70,8 @@
     <protobuf-maven-plugin.version>0.5.0</protobuf-maven-plugin.version>
 
     <!--  compiler settings -->
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
 
     <!-- encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
