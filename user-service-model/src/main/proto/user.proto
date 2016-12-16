@@ -3,7 +3,7 @@ syntax = "proto3";
 package truward.orion.user;
 
 option java_package = "com.truward.orion.user.service.model";
-option java_outer_classname = "UserModel";
+option java_outer_classname = "UserModelV1";
 
 enum ContactType {
   UNKNOWN = 0;

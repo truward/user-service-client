@@ -1,6 +1,5 @@
 package com.truward.orion.user.service.spring;
 
-import com.truward.orion.user.service.model.UserModel;
 import com.truward.orion.user.service.model.UserRestService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,6 +16,8 @@ import java.util.HashSet;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
+
+import static com.truward.orion.user.service.model.UserModelV1.*;
 
 /**
  * Unit tests for {@link UserProfileService}.
@@ -35,7 +36,7 @@ public final class UserProfileServiceTest {
     final long id = 123000L;
     final UserProfileService profileService = new UserProfileService(userRestServiceMock);
 
-    final UserModel.UserAccount account = UserModel.UserAccount.newBuilder()
+    final UserAccount account = UserAccount.newBuilder()
         .setId(id)
         .setPasswordHash("password-hash")
         .setNickname(username)
@@ -44,11 +45,11 @@ public final class UserProfileServiceTest {
         .setCreated(1234000000000L)
         .build();
 
-    when(userRestServiceMock.lookupAccount(UserModel.AccountLookupRequest.newBuilder()
+    when(userRestServiceMock.lookupAccount(AccountLookupRequest.newBuilder()
         .setUsername(username)
         .setIncludeContacts(false)
         .build()))
-        .thenReturn(UserModel.AccountLookupResponse.newBuilder().setAccount(account).build());
+        .thenReturn(AccountLookupResponse.newBuilder().setAccount(account).build());
 
     // When:
     final UserDetails userDetails = profileService.loadUserByUsername(username);
@@ -70,11 +71,11 @@ public final class UserProfileServiceTest {
   public void shouldFailToFindUser() {
     // Given:
     final UserProfileService profileService = new UserProfileService(userRestServiceMock);
-    when(userRestServiceMock.lookupAccount(UserModel.AccountLookupRequest.newBuilder()
+    when(userRestServiceMock.lookupAccount(AccountLookupRequest.newBuilder()
         .setUsername(username)
         .setIncludeContacts(false)
         .build()))
-        .thenReturn(UserModel.AccountLookupResponse.newBuilder().build());
+        .thenReturn(AccountLookupResponse.newBuilder().build());
 
     // When:
     profileService.loadUserByUsername(username);

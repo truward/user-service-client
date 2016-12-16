@@ -1,16 +1,13 @@
 package com.truward.orion.user.service.spring;
 
 import org.junit.Test;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertNull;
+import static org.junit.Assert.*;
 
 /**
  * Tests for {@link UserIdRoleUtil}.
@@ -49,7 +46,7 @@ public final class UserIdRoleUtilTest {
 
   @Test
   public void shouldNotFindIdInEmptyGrantedAuthoritiesCollection() {
-    assertNull(UserIdRoleUtil.tryGetUserId(Collections.<GrantedAuthority>emptyList()));
+    assertNull(UserIdRoleUtil.tryGetUserId(Collections.emptyList()));
   }
 
   @Test

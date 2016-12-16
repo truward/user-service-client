@@ -2,6 +2,8 @@ package com.truward.orion.user.service.model;
 
 import org.springframework.web.bind.annotation.*;
 
+import static com.truward.orion.user.service.model.UserModelV1.*;
+
 /**
  * Defines a contract for major RESTful operations on user service.
  *
@@ -11,34 +13,33 @@ public interface UserRestService {
 
   @RequestMapping(value = "/account/{id}", method = RequestMethod.GET)
   @ResponseBody
-  UserModel.UserAccount getAccountById(@PathVariable("id") long id);
+  UserAccount getAccountById(@PathVariable("id") long id);
 
   @RequestMapping(value = "/account/list", method = RequestMethod.POST)
   @ResponseBody
-  UserModel.ListAccountsResponse getAccounts(@RequestBody UserModel.ListAccountsRequest request);
+  ListAccountsResponse getAccounts(@RequestBody ListAccountsRequest request);
 
   @RequestMapping(value = "/account/lookup", method = RequestMethod.POST)
   @ResponseBody
-  UserModel.AccountLookupResponse lookupAccount(@RequestBody UserModel.AccountLookupRequest request);
+  AccountLookupResponse lookupAccount(@RequestBody AccountLookupRequest request);
 
   @RequestMapping(value = "/account", method = RequestMethod.POST)
   @ResponseBody
-  UserModel.RegisterAccountResponse registerAccount(@RequestBody UserModel.RegisterAccountRequest request);
+  RegisterAccountResponse registerAccount(@RequestBody RegisterAccountRequest request);
 
   @RequestMapping(value = "/account", method = RequestMethod.PUT)
   @ResponseBody
-  UserModel.UpdateAccountResponse updateAccount(@RequestBody UserModel.UpdateAccountRequest request);
+  UpdateAccountResponse updateAccount(@RequestBody UpdateAccountRequest request);
 
   @RequestMapping(value = "/account/list", method = RequestMethod.DELETE)
   @ResponseBody
-  UserModel.DeleteAccountsResponse deleteAccounts(@RequestBody UserModel.DeleteAccountsRequest request);
+  DeleteAccountsResponse deleteAccounts(@RequestBody DeleteAccountsRequest request);
 
   @RequestMapping(value = "/account/check/presence", method = RequestMethod.POST)
   @ResponseBody
-  UserModel.AccountPresenceResponse checkAccountPresence(@RequestBody UserModel.AccountPresenceRequest request);
+  AccountPresenceResponse checkAccountPresence(@RequestBody AccountPresenceRequest request);
 
   @RequestMapping(value = "/token/create", method = RequestMethod.POST)
   @ResponseBody
-  UserModel.CreateInvitationTokensResponse createInvitationTokens(
-      @RequestBody UserModel.CreateInvitationTokensRequest request);
+  CreateInvitationTokensResponse createInvitationTokens(@RequestBody CreateInvitationTokensRequest request);
 }
