@@ -1,0 +1,18 @@
+{
+  "private": true,
+
+  "main": "js/main.js",
+
+  "dependencies": {
+  },
+
+  "devDependencies": {
+  },
+
+  "config": {
+  },
+
+  "scripts": {
+    "clean": "rm -rf ./target"
+  }
+}
