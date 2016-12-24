@@ -73,16 +73,18 @@ BrikarClient.prototype.request = function BrikarClient_request(method, relativeU
       });
       response.on('end', () => {
         var responseObject = null;
-        var responseContentType = response.headers['Content-Type'];
+        var responseContentType = response.headers['content-type'];
+
         if (responseContentType === "application/json") {
           responseObject = JSON.parse(responseDataArray.join(''));
-        } else if (contentType === "text/plain") {
+        } else if (responseContentType === "text/plain") {
           responseObject = responseDataArray.join('');
-        } else if (contentType == null) {
+        } else if (responseContentType === null) {
           log.trace("No content");
         } else {
           return reject({
             errorMessage: 'Unknown content type',
+            target: response.headers,
             type: 'ResponseError'
           });
         }
