@@ -14,11 +14,12 @@
 //    active: true }
 //
 
-var clientConfig = require('./config/brikar-client-config');
-var getLog = require('./out/cli-log').getLog;
+var bc = require("brikar-client-cli")
 var process = require('process');
 
-var BrikarClient = require('./service/brikar-client').BrikarClient;
+var readConfigOrMakeDefault = bc.readConfigOrMakeDefault;
+var getLog = bc.getLog;
+var BrikarClient = bc.BrikarClient;
 
 var CLIENT;
 
@@ -62,7 +63,7 @@ function main() {
   var log = getLog({traceEnabled: traceEnabled, origin: 'main'});
   log.trace('Initializing...');
 
-  var config = clientConfig.readConfigOrMakeDefault("user-service", getLog({origin: 'brikar-client-config'}));
+  var config = readConfigOrMakeDefault("user-service", getLog({origin: 'brikar-client-config'}));
   log.trace('Parsed config', config);
 
   var brikarClient = new BrikarClient(config, getLog({traceEnabled: traceEnabled, origin: 'brikar-client'}));
@@ -88,4 +89,6 @@ main();
 // Exports
 //
 
-exports.CLIENT = CLIENT;
+exports.getClient = function () {
+  return CLIENT;
+}

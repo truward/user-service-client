@@ -4,6 +4,7 @@
   "main": "js/main.js",
 
   "dependencies": {
+    "brikar-client-cli": "^0.0.1"
   },
 
   "devDependencies": {
