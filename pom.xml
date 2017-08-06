@@ -38,7 +38,7 @@
 
   <scm>
     <connection>scm:git:https://github.com/truward/user-service-client.git</connection>
-    <developerConnection>scm:git:git@github.com:truward/user-service-client.git</developerConnection>
+    <developerConnection>scm:git:https://github.com/truward/user-service-client.git</developerConnection>
     <url>https://github.com/truward/user-service-client.git</url>
     <tag>HEAD</tag>
   </scm>
