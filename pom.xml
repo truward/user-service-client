@@ -10,7 +10,7 @@
 
   <groupId>com.truward.orion</groupId>
   <artifactId>user-service-client</artifactId>
-  <version>1.0.8-SNAPSHOT</version>
+  <version>1.0.8</version>
   <url>https://github.com/truward/user-service-client</url>
   <packaging>pom</packaging>
   <name>User Service Client</name>
@@ -40,7 +40,7 @@
     <connection>scm:git:https://github.com/truward/user-service-client.git</connection>
     <developerConnection>scm:git:git@github.com:truward/user-service-client.git</developerConnection>
     <url>https://github.com/truward/user-service-client.git</url>
-    <tag>HEAD</tag>
+    <tag>user-service-client-1.0.8</tag>
   </scm>
 
   <distributionManagement>
