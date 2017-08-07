@@ -12,7 +12,9 @@ enum ContactType {
 }
 
 message Contact {
+  // TODO: rename to 'value' in the next version
   string number = 1;
+
   ContactType type = 2;
 }
 
